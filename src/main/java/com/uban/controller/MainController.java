@@ -1,7 +1,9 @@
 package com.uban.controller;
 
 import com.uban.entity.InfoVo;
+import com.uban.service.InfoService;
 import com.uban.utils.ImportExcelUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +23,9 @@ import java.util.List;
 @Controller
 public class MainController {
 
+
+    @Autowired
+    private InfoService infoService;
     /**
      * 描述：通过传统方式form表单提交方式导入excel文件
      * @param request
@@ -40,7 +45,7 @@ public class MainController {
         in = file.getInputStream();
         listob = ImportExcelUtil.getBankListByExcel(in,file.getOriginalFilename(),InfoVo.class);
         in.close();
-
+        infoService.batchInsert(listob);
         return "result";
     }
 
