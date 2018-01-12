@@ -110,6 +110,6 @@
     </dependency>
   </dependencies>
   <build>
-    <finalName>com.uban</finalName>
+    <finalName>excelToMysql</finalName>
   </build>
 </project>
